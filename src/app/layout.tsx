@@ -1,6 +1,17 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import './assets/css/style.css'
+import Image from 'next/image'
+import Header from '../app/components/Header'
+import Footer from '../app/components/Footer'
+import PaginationSection from '../app/components/PaginationSection'
+import logo from './assets/images/logo.svg'
+import banner from './assets/images/banner.gif'
+import sidebarOne from './assets/images/ads/sidebar-one.gif'
+import sidebarTwo from './assets/images/ads/sidebar-two.gif'
+import sidebarThree from './assets/images/ads/sidebar-three.gif'
+import sidebarFour from './assets/images/ads/sidebar-four.gif'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +27,60 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className='body'>
+          
+          {/* header */}
+          <Header />
+
+          {/* pagination */}
+          <PaginationSection />
+          
+          {/* sidebar and main wrap */}
+          <div className="sidebar-and-body-wrap">
+            <aside className='sidebar-left'>
+              <Image 
+                width={100} 
+                height={700} 
+                src={sidebarOne} 
+                layout="responsive" 
+                alt='sidebar ads' 
+                style={{ borderRadius: '5px' }} 
+              />
+              <Image 
+                width={100} 
+                height={100} 
+                src={sidebarTwo} 
+                layout="responsive" 
+                alt='banner ads' 
+                style={{ borderRadius: '5px' }} 
+              />
+            </aside>
+            <main className='main'>
+              {children}
+            </main>
+            <aside className='sidebar-right'>
+              <Image 
+                width={100} 
+                height={700} 
+                src={sidebarThree} 
+                layout="responsive" 
+                alt='sidebar ads' 
+                style={{ borderRadius: '5px' }} 
+              />
+              <Image 
+                width={100} 
+                height={100} 
+                src={sidebarFour} 
+                layout="responsive" 
+                alt='banner ads' 
+                style={{ borderRadius: '5px' }} 
+              />
+            </aside>
+          </div>
+
+          {/* footer */}
+          <Footer />
+      </body>
     </html>
   )
 }
